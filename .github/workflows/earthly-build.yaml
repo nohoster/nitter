@@ -28,4 +28,4 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly --use-inline-cache --push +build
+      run: earthly --use-inline-cache --push +all
