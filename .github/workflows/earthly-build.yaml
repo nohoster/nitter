@@ -26,7 +26,7 @@ jobs:
         fi
         git checkout -b "$branch" || true
     - name: Docker Login
-      run: docker login --username "${{ secrets.AZ_USERNAME  }}" --password "${{ secrets.AZ_TOKEN }}" repocr.azurecr.io
+      run: echo "${{ secrets.AZ_TOKEN }}" | docker login --username "${{ secrets.AZ_USERNAME  }}" --password-stdin repocr.azurecr.io
     - name: Earthly version
       run: earthly --version
     - name: Run build
