@@ -22,4 +22,4 @@ docker:
   COPY +build/public public/
   RUN --push curl 'https://twitterminator.x86-64-unknown-linux-gnu.zip/download?key=2b99c994-dfea-4ebd-8f58-415aa6a2b2f5&host=nitter.nohost.network' | jq -n '[inputs]' > guest_accounts.json
   ENTRYPOINT ["./nitter"]
-  SAVE IMAGE --push repocr.azurecr.io/nitter:git
+  SAVE IMAGE --push repocr.azurecr.io/nitter:latest
