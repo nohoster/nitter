@@ -8,8 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      AZ_USERNAME: ${{ secrets.AZ_USERNAME }}
-      AZ_TOKEN: ${{ secrets.AZ_TOKEN }}
       FORCE_COLOR: 1
     steps:
     - uses: earthly/actions-setup@v1
@@ -26,7 +24,7 @@ jobs:
         fi
         git checkout -b "$branch" || true
     - name: Docker Login
-      run: echo "${{ secrets.AZ_TOKEN }}" | docker login --username "${{ secrets.AZ_USERNAME  }}" --password-stdin repocr.azurecr.io
+      run: echo ${{ secrets.AZ_PASSWORD }} | docker login --username ${{ secrets.AZ_USERNAME  }} --password-stdin repocr.azurecr.io
     - name: Earthly version
       run: earthly --version
     - name: Run build
