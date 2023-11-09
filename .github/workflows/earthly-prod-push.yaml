@@ -1,14 +1,14 @@
-name: Base image build 
+name: Prod push
 
 on:
-  push:
-    branches: [ guest_accounts ]
-
+  schedule:
+    - cron: '0 0 * * 0'
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       FORCE_COLOR: 1
+      EARTHLY_SECRETS: "GUEST_TOKENS_TOKEN=${{ secrets.GUEST_TOKENS_TOKEN }}"
     steps:
     - name: Set up QEMU
       id: qemu
@@ -34,4 +34,4 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly  --ci --push --remote-cache repocr.azurecr.io/nitter:cache +base-build
+      run: earthly --secrets GUEST_TOKENS_TOKEN --ci --push --remote-cache repocr.azurecr.io/nitter:cache +prod-push
