@@ -2,8 +2,7 @@ name: Prod push
 
 on:
   schedule:
-    # - cron: '0 0 * * 0'
-    - cron: '0 * * * *'
+    - cron: '0 0 * * 0' #weekly run
 jobs:
   build:
     runs-on: ubuntu-latest
