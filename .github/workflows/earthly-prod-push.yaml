@@ -37,4 +37,4 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly --secret GUEST_TOKENS_TOKEN --ci --push --remote-cache repocr.azurecr.io/nitter:cache +prod-push
+      run: earthly --secret GUEST_TOKENS_TOKEN=${{ secrets.GUEST_TOKENS_TOKEN }} --ci --push --remote-cache repocr.azurecr.io/nitter:cache +prod-push
