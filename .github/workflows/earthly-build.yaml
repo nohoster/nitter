@@ -30,8 +30,8 @@ jobs:
         fi
         git checkout -b "$branch" || true
     - name: Docker Login
-      run: echo ${{ secrets.AZ_PASSWORD }} | docker login --username ${{ secrets.AZ_USERNAME  }} --password-stdin repocr.azurecr.io
+      run: echo ${{ secrets.REPO_PASSWORD }} | docker login --username ${{ secrets.REPO_USERNAME  }} --password-stdin repo.nohost.network
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly  --ci --push --remote-cache repocr.azurecr.io/nitter:cache +base-build
+      run: earthly  --ci --push --remote-cache repo.nohost.network/nitter:cache +base-build

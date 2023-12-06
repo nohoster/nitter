@@ -24,14 +24,14 @@ base-img:
   COPY +build/nitter .
   COPY +build/public public/
   ENTRYPOINT ["./nitter"]
-  SAVE IMAGE --push repocr.azurecr.io/nitter:base
+  SAVE IMAGE --push repo.nohost.network/nitter:base
 
 prod-build:
-  FROM repocr.azurecr.io/nitter:base
+  FROM repo.nohost.network/nitter:base
   RUN apk --no-cache add ca-certificates pcre openssl1.1-compat curl jq
   RUN --secret GUEST_TOKENS_TOKEN --push curl "https://twitterminator.x86-64-unknown-linux-gnu.zip/download?key=$GUEST_TOKENS_TOKEN&host=nitter.nohost.network" | jq -n '[inputs]' > guest_accounts.json
   ENTRYPOINT ["./nitter"]
-  SAVE IMAGE --push repocr.azurecr.io/nitter:latest
+  SAVE IMAGE --push repo.nohost.network/nitter:latest
 
 prod-push:
    BUILD \
